@@ -5,11 +5,11 @@ To read about what the photon-stream and its file-formats go to the [initial Pyt
 This is a C++ reader and writer for the FACT photon-stream.
 
 ## All you need 
-to either read or write binary photon-stream files is in:
+to either read or write binary photon-stream files:
 
 ```photon_stream.h```
 
-Since we do not hate our lifes, wu use __only__ the C++ ```std``` library.
+__Only__ C++ ```std``` library.
 
 
 
