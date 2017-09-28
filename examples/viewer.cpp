@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <array>
-#include "photon_stream.h"
+#include "../photon_stream.h"
 #include "docopt/docopt.h"
 #include <fstream>
 #include <sstream>
