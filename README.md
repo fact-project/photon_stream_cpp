@@ -1,17 +1,13 @@
 # Photon-Stream for C++
 
-To read about what the photon-stream and its file-formats go to the [initial Python repo](https://github.com/fact-project/photon_stream).
-
-This is a C++ reader and writer for the FACT photon-stream.
+Read about the photon-stream and its file-formats in the [base photon-stream repository](https://github.com/fact-project/photon_stream).
 
 ## All you need 
-to either read or write binary photon-stream files:
+to read and write binary photon-stream files:
 
 ```photon_stream.h```
 
 __Only__ C++ ```std``` library.
-
-
 
 ## Examples
 Examples on the usage of ```photon_stream.h```. Take a look into the ```example``` directory.
@@ -63,4 +59,8 @@ night    run event trigger  Az[deg] ZD[deg]  UnixTime[s]   photons
 20170119 229     4      4  -63.25  33.07  1484895232.675652    5221
 20170119 229     5      4  -63.25  33.07  1484895232.690576    4661
 20170119 229     6      4  -63.25  33.07  1484895232.718719    5692
+20170119 229     7      4  -63.25  33.07  1484895232.747059    4850
+20170119 229     8   1024  -63.25  33.07  1484895232.845441    4612
+20170119 229     9      4  -63.25  33.07  1484895232.895595    5204
+20170119 229    10      2  -63.25  33.07  1484895232.002080    4697
 ```
