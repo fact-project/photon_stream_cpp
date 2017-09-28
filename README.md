@@ -23,20 +23,34 @@ Draws FACT events onto your command line.
 ![img](examples/viewer_1.png) ![img](examples/viewer_2.png)
 
 
+Build:
 ```bash
 g++ examples/docopt/docopt.cpp examples/viewer.cpp -o phs.viewer -std=gnu++11
 ```
 
+Call: First use zcat to ungzip the input file.
+```bash
+zcat tests/20170119_229_pass4_100events.phs.gz > tests/20170119_229_pass4_100events.phs
+```
+
+Call: Second call the viewer and read the help print.
+```bash
+./phs.viewer -i tests/20170119_229_pass4_100events.phs
+```
+
+
 ### Table print
 Prints a table summary of the events in the input.
 
+Build:
 ```bash
 g++ examples/docopt/docopt.cpp examples/table.cpp -o phs.table -std=gnu++11
 ```
-Usage via ```PIPE``` and ```zcat``` to unzip the file.
+
+Call via ```PIPE``` and ```zcat``` to unzip the file.
 
 ```bash
-zcat tests/resources/20170119_229_pass4_100events.phs.gz | ./phs.table
+zcat tests/20170119_229_pass4_100events.phs.gz | ./phs.table
 ```
 will print:
 
