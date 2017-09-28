@@ -10,29 +10,26 @@ to read and write binary photon-stream files:
 __Only__ C++ ```std``` library.
 
 ## Examples
-Examples on the usage of ```photon_stream.h```. Take a look into the ```example``` directory.
+Examples which include ```photon_stream.h```. Take a look into the ```example``` directory.
 
 ### ASCII event viewer 
 Draws FACT events onto your command line.
-
-
-![img](examples/viewer_1.png) ![img](examples/viewer_2.png)
-
 
 Build:
 ```bash
 g++ examples/docopt/docopt.cpp examples/viewer.cpp -o phs.viewer -std=gnu++11
 ```
 
-Call: First use zcat to ungzip the input file.
+1st) Use zcat to ungzip the input file.
 ```bash
 zcat tests/20170119_229_pass4_100events.phs.gz > tests/20170119_229_pass4_100events.phs
 ```
 
-Call: Second call the viewer and read the help print.
+2nd) Call the phs.viewer and read the help print.
 ```bash
 ./phs.viewer -i tests/20170119_229_pass4_100events.phs
 ```
+![img](examples/viewer_1.png) ![img](examples/viewer_2.png)
 
 
 ### Table print
