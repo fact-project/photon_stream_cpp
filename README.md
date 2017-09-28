@@ -4,13 +4,17 @@ To read about what the photon-stream and its file-formats go to the [initial Pyt
 
 This is a C++ reader and writer for the FACT photon-stream.
 
-All you need to either read or write binary photon-stream files is in ```photon_stream.h```.
+## All you need 
+to either read or write binary photon-stream files is in:
+
+```photon_stream.h```
+
 Since we do not hate our lifes, wu use __only__ the C++ ```std``` library.
 
-To see examples on the usage of ```photon_stream.h```, take a look into the example directory.
-There we have:
+
 
 ## Examples
+Examples on the usage of ```photon_stream.h```. Take a look into the ```example``` directory.
 
 ### ASCII event viewer 
 Draws FACT events onto your command line.
