@@ -15,6 +15,10 @@ There we have:
 ### ASCII event viewer 
 Draws FACT events onto your command line.
 
+
+![img](examples/viewer_1.png) ![img](examples/viewer_2.png)
+
+
 ```bash
 g++ examples/docopt/docopt.cpp examples/viewer.cpp -o phs.viewer -std=gnu++11
 ```
