@@ -17,10 +17,10 @@
 #ifndef PHOTON_STREAM_H_
 #define PHOTON_STREAM_H_
 
+#include <math.h>
 #include <stdint.h>
 #include <vector>
 #include <array>
-#include <math.h>
 #include <fstream>
 #include <iostream>
 
