@@ -149,7 +149,10 @@ ObservationIdentifier read_ObservationIdentifier_from_file(std::istream &fin) {
     return obsid;
 }
 
-void append_ObservationIdentifier_to_file(const ObservationIdentifier &obsid, std::ostream &fout) {
+void append_ObservationIdentifier_to_file(
+    const ObservationIdentifier &obsid,
+    std::ostream &fout
+) {
     append_uint32(obsid.night, fout);
     append_uint32(obsid.run, fout);
     append_uint32(obsid.event, fout);
@@ -162,7 +165,9 @@ struct ObservationInformation {
     uint32_t trigger_type;
 };
 
-ObservationInformation read_ObservationInformation_from_file(std::istream &fin) {
+ObservationInformation read_ObservationInformation_from_file(
+    std::istream &fin
+) {
     ObservationInformation obsinfo;
     obsinfo.unix_time_s = read_uint32(fin);
     obsinfo.unix_time_us = read_uint32(fin);
@@ -170,7 +175,10 @@ ObservationInformation read_ObservationInformation_from_file(std::istream &fin) 
     return obsinfo;
 }
 
-void append_ObservationInformation_to_file(const ObservationInformation &obsinfo, std::ostream &fout) {
+void append_ObservationInformation_to_file(
+    const ObservationInformation &obsinfo,
+    std::ostream &fout
+) {
     append_uint32(obsinfo.unix_time_s , fout);
     append_uint32(obsinfo.unix_time_us, fout);
     append_uint32(obsinfo.trigger_type, fout);
@@ -191,7 +199,10 @@ SimulationIdentifier read_SimulationIdentifier_from_file(std::istream &fin) {
     return simid;
 }
 
-void append_SimulationIdentifier_to_file(const SimulationIdentifier &simid, std::ostream &fout) {
+void append_SimulationIdentifier_to_file(
+    const SimulationIdentifier &simid,
+    std::ostream &fout
+) {
     append_uint32(simid.run , fout);
     append_uint32(simid.event, fout);
     append_uint32(simid.reuse, fout);
@@ -258,7 +269,8 @@ image_sequence image_sequence_representation(raw_stream &raw) {
         if(raw[i] == NEXT_PIXEL_MARKER) {
             chid++;
         }else{
-            uint8_t idx = raw[i] - NUMBER_OF_TIME_SLICES_OFFSET_AFTER_BEGIN_OF_ROI;
+            uint8_t idx =
+                raw[i] - NUMBER_OF_TIME_SLICES_OFFSET_AFTER_BEGIN_OF_ROI;
             seq[idx][chid]++;
         }
     }
@@ -352,7 +364,10 @@ ObservationEvent read_ObservationEvent_from_file(std::istream &fin) {
     return evt;
 };
 
-void append_ObservationEvent_to_file(const ObservationEvent evt, std::ostream &fout) {
+void append_ObservationEvent_to_file(
+    const ObservationEvent evt,
+    std::ostream &fout
+) {
     append_Descriptor_to_file(evt.descriptor, fout);
     append_ObservationIdentifier_to_file(evt.id, fout);
     append_ObservationInformation_to_file(evt.info, fout);
@@ -380,7 +395,10 @@ SimulationEvent read_SimulationEvent_from_file(std::istream &fin) {
     return evt;
 };
 
-void append_SimulationEvent_to_file(const SimulationEvent evt, std::ostream &fout) {
+void append_SimulationEvent_to_file(
+    const SimulationEvent evt,
+    std::ostream &fout
+) {
     append_Descriptor_to_file(evt.descriptor, fout);
     append_SimulationIdentifier_to_file(evt.id, fout);
     append_PhotonStream_to_file(evt.photon_stream, fout);
