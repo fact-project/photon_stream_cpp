@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>
 
-#ifndef __PhotonStreamPass4_H_INCLUDED__
-#define __PhotonStreamPass4_H_INCLUDED__
+#ifndef PHOTON_STREAM_H_
+#define PHOTON_STREAM_H_
 
 #include <stdint.h>
 #include <vector>
@@ -389,4 +389,4 @@ void append_SimulationEvent_to_file(SimulationEvent evt, std::ostream &fout) {
 //------------------------------------------------------------------------------
 } //photon_stream
 
-#endif // __PhotonStreamPass4_H_INCLUDED__
+#endif // PHOTON_STREAM_H_
