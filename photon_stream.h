@@ -126,7 +126,7 @@ Descriptor read_Descriptor_from_file(std::istream &fin) {
     return d;
 }
 
-void append_Descriptor_to_file(Descriptor &d, std::ostream &fout) {
+void append_Descriptor_to_file(const Descriptor &d, std::ostream &fout) {
     append_uint8(d.magic_1, fout);
     append_uint8(d.magic_2, fout);
     append_uint8(d.magic_3, fout);
@@ -149,7 +149,7 @@ ObservationIdentifier read_ObservationIdentifier_from_file(std::istream &fin) {
     return obsid;
 }
 
-void append_ObservationIdentifier_to_file(ObservationIdentifier &obsid, std::ostream &fout) {
+void append_ObservationIdentifier_to_file(const ObservationIdentifier &obsid, std::ostream &fout) {
     append_uint32(obsid.night, fout);
     append_uint32(obsid.run, fout);
     append_uint32(obsid.event, fout);
@@ -170,7 +170,7 @@ ObservationInformation read_ObservationInformation_from_file(std::istream &fin) 
     return obsinfo;
 }
 
-void append_ObservationInformation_to_file(ObservationInformation &obsinfo, std::ostream &fout) {
+void append_ObservationInformation_to_file(const ObservationInformation &obsinfo, std::ostream &fout) {
     append_uint32(obsinfo.unix_time_s , fout);
     append_uint32(obsinfo.unix_time_us, fout);
     append_uint32(obsinfo.trigger_type, fout);
@@ -191,7 +191,7 @@ SimulationIdentifier read_SimulationIdentifier_from_file(std::istream &fin) {
     return simid;
 }
 
-void append_SimulationIdentifier_to_file(SimulationIdentifier &simid, std::ostream &fout) {
+void append_SimulationIdentifier_to_file(const SimulationIdentifier &simid, std::ostream &fout) {
     append_uint32(simid.run , fout);
     append_uint32(simid.event, fout);
     append_uint32(simid.reuse, fout);
@@ -210,7 +210,7 @@ Pointing read_Pointing_from_file(std::istream &fin) {
     return p;
 }
 
-void append_Pointing_to_file(Pointing &p, std::ostream &fout) {
+void append_Pointing_to_file(const Pointing &p, std::ostream &fout) {
     append_float32(p.zd, fout);
     append_float32(p.az, fout);
 }
@@ -236,7 +236,7 @@ list_of_lists list_of_lists_representation(raw_stream &raw) {
 }
 
 
-image list_of_lists_integral(list_of_lists &l) {
+image list_of_lists_integral(const list_of_lists &l) {
     image img;
     for(uint32_t i=0; i<l.size(); i++) {
         img[i] = l[i].size();
@@ -313,7 +313,7 @@ PhotonStream read_PhotonStream_from_file(std::istream &fin) {
     return phs;
 }
 
-void append_PhotonStream_to_file(PhotonStream &phs, std::ostream &fout) {
+void append_PhotonStream_to_file(const PhotonStream &phs, std::ostream &fout) {
     uint32_t number_of_pixels_plus_number_of_photons = phs.raw.size();
     append_uint32(number_of_pixels_plus_number_of_photons, fout);
     fout.write(
@@ -352,7 +352,7 @@ ObservationEvent read_ObservationEvent_from_file(std::istream &fin) {
     return evt;
 };
 
-void append_ObservationEvent_to_file(ObservationEvent evt, std::ostream &fout) {
+void append_ObservationEvent_to_file(const ObservationEvent evt, std::ostream &fout) {
     append_Descriptor_to_file(evt.descriptor, fout);
     append_ObservationIdentifier_to_file(evt.id, fout);
     append_ObservationInformation_to_file(evt.info, fout);
@@ -380,7 +380,7 @@ SimulationEvent read_SimulationEvent_from_file(std::istream &fin) {
     return evt;
 };
 
-void append_SimulationEvent_to_file(SimulationEvent evt, std::ostream &fout) {
+void append_SimulationEvent_to_file(const SimulationEvent evt, std::ostream &fout) {
     append_Descriptor_to_file(evt.descriptor, fout);
     append_SimulationIdentifier_to_file(evt.id, fout);
     append_PhotonStream_to_file(evt.photon_stream, fout);
