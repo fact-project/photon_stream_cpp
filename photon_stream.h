@@ -399,6 +399,6 @@ void append_SimulationEvent_to_file(
 }
 
 //------------------------------------------------------------------------------
-} //photon_stream
+}  // namespace photon_stream
 
-#endif // PHOTON_STREAM_H_
+#endif  // PHOTON_STREAM_H_
