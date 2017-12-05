@@ -63,7 +63,7 @@ const uint8_t MAGIC_DESCRIPTOR_3 = 's';
 // see also: https://github.com/fact-project/fact-tools/blob/master/src/main/java/fact/photonstream/SinglePulseExtraction.java
 
 void append_float32(const float &v, std::ostream &fout) {
-    fout.write(reinterpret_cast<char*>(&v), sizeof(v));
+    fout.write(reinterpret_cast<const char*>(&v), sizeof(v));
 }
 
 float read_float32(std::istream &fin) {
@@ -73,7 +73,7 @@ float read_float32(std::istream &fin) {
 }
 
 void append_uint32(const uint32_t &v, std::ostream &fout) {
-    fout.write(reinterpret_cast<char*>(&v), sizeof(v));
+    fout.write(reinterpret_cast<const char*>(&v), sizeof(v));
 }
 uint32_t read_uint32(std::istream &fin) {
     uint32_t v;
@@ -82,7 +82,7 @@ uint32_t read_uint32(std::istream &fin) {
 }
 
 void append_uint16(const uint16_t &v, std::ostream &fout) {
-    fout.write(reinterpret_cast<char*>(&v), sizeof(v));
+    fout.write(reinterpret_cast<const char*>(&v), sizeof(v));
 }
 uint16_t read_uint16(std::istream &fin) {
     uint16_t v;
@@ -91,7 +91,7 @@ uint16_t read_uint16(std::istream &fin) {
 }
 
 void append_uint8(const uint8_t &v, std::ostream &fout) {
-    fout.write(reinterpret_cast<char*>(&v), sizeof(v));
+    fout.write(reinterpret_cast<const char*>(&v), sizeof(v));
 }
 uint8_t read_uint8(std::istream &fin) {
     uint8_t v;
@@ -325,13 +325,13 @@ void append_PhotonStream_to_file(const PhotonStream &phs, std::ostream &fout) {
     uint32_t number_of_pixels_plus_number_of_photons = phs.raw.size();
     append_uint32(number_of_pixels_plus_number_of_photons, fout);
     fout.write(
-        reinterpret_cast<char*>(phs.raw.data()),
+        reinterpret_cast<const char*>(phs.raw.data()),
         number_of_pixels_plus_number_of_photons);
 
     uint16_t number_of_saturated_pixels = phs.saturated_pixels.size();
     append_uint16(number_of_saturated_pixels, fout);
     fout.write(
-        reinterpret_cast<char*>(phs.saturated_pixels.data()),
+        reinterpret_cast<const char*>(phs.saturated_pixels.data()),
         number_of_saturated_pixels);
 }
 
