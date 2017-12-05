@@ -1,3 +1,6 @@
+// FACT--Photon-Stream
+// Copyright (C), (2017, ), Sebastian Achim Mueller for the FACT Collaboration
+//
 // compile using:
 // g++ docopt/docopt.cpp table.cpp -o phs.table -std=gnu++11
 
