@@ -48,18 +48,18 @@ const uint8_t MAGIC_DESCRIPTOR_3 = 's';
 //  |         |       |.. output window ..|                        |        |
 //  0        20       | <- length=100 ->  |                       245      300
 //                   30                  130
-// 
+//
 // [in 2GHz slices]
-// 
+//
 // - whole time series
 //     The full 300 slices (150ns) Region Of Interest (ROI) of the FACT camera.
-// 
+//
 // - extraction window
 //     The timewindow where single pulses are searched for and extracted.
-// 
+//
 // - output window
 //     The photon-stream output time window 100 slices (50ns)
-// 
+//
 // see also: https://github.com/fact-project/fact-tools/blob/master/src/main/java/fact/photonstream/SinglePulseExtraction.java
 
 void append_float32(float &v, std::ostream &fout) {
@@ -138,7 +138,7 @@ void append_Descriptor_to_file(Descriptor &d, std::ostream &fout) {
 struct ObservationIdentifier {
     uint32_t night;
     uint32_t run;
-    uint32_t event; 
+    uint32_t event;
 };
 
 ObservationIdentifier read_ObservationIdentifier_from_file(std::istream &fin) {
@@ -231,7 +231,7 @@ list_of_lists list_of_lists_representation(raw_stream &raw) {
         }else{
             lol[chid].push_back(raw[i]);
         }
-    } 
+    }
     return lol;
 }
 
@@ -241,7 +241,7 @@ image list_of_lists_integral(list_of_lists &l) {
     for(uint32_t i=0; i<l.size(); i++) {
         img[i] = l[i].size();
     }
-    return img;  
+    return img;
 }
 
 
@@ -261,7 +261,7 @@ image_sequence image_sequence_representation(raw_stream &raw) {
             uint8_t idx = raw[i] - NUMBER_OF_TIME_SLICES_OFFSET_AFTER_BEGIN_OF_ROI;
             seq[idx][chid]++;
         }
-    }  
+    }
     return seq;
 }
 
@@ -299,7 +299,7 @@ PhotonStream read_PhotonStream_from_file(std::istream &fin) {
 
     phs.raw.resize(number_of_pixels_plus_number_of_photons);
     fin.read(
-        reinterpret_cast<char*>(&phs.raw[0]), 
+        reinterpret_cast<char*>(&phs.raw[0]),
         number_of_pixels_plus_number_of_photons
     );
 
@@ -307,7 +307,7 @@ PhotonStream read_PhotonStream_from_file(std::istream &fin) {
 
     phs.saturated_pixels.resize(number_of_saturated_pixels);
     fin.read(
-        reinterpret_cast<char*>(&phs.saturated_pixels[0]), 
+        reinterpret_cast<char*>(&phs.saturated_pixels[0]),
         sizeof(uint16_t)*number_of_saturated_pixels
     );
     return phs;
@@ -317,14 +317,14 @@ void append_PhotonStream_to_file(PhotonStream &phs, std::ostream &fout) {
     uint32_t number_of_pixels_plus_number_of_photons = phs.raw.size();
     append_uint32(number_of_pixels_plus_number_of_photons, fout);
     fout.write(
-        reinterpret_cast<char*>(phs.raw.data()), 
+        reinterpret_cast<char*>(phs.raw.data()),
         number_of_pixels_plus_number_of_photons
     );
 
     uint16_t number_of_saturated_pixels = phs.saturated_pixels.size();
     append_uint16(number_of_saturated_pixels, fout);
     fout.write(
-        reinterpret_cast<char*>(phs.saturated_pixels.data()), 
+        reinterpret_cast<char*>(phs.saturated_pixels.data()),
         number_of_saturated_pixels
     );
 }
