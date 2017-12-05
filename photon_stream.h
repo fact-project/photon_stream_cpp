@@ -234,10 +234,10 @@ void append_Pointing_to_file(const Pointing &p, std::ostream &fout) {
 list_of_lists list_of_lists_representation(raw_stream &raw) {
     list_of_lists lol;
     uint32_t chid = 0;
-    for(uint32_t i=0; i<raw.size(); i++) {
-        if(raw[i] == NEXT_PIXEL_MARKER) {
+    for (uint32_t i = 0; i < raw.size(); i++) {
+        if (raw[i] == NEXT_PIXEL_MARKER) {
             chid++;
-        }else{
+        } else {
             lol[chid].push_back(raw[i]);
         }
     }
@@ -247,7 +247,7 @@ list_of_lists list_of_lists_representation(raw_stream &raw) {
 
 image list_of_lists_integral(const list_of_lists &l) {
     image img;
-    for(uint32_t i=0; i<l.size(); i++) {
+    for (uint32_t i = 0; i < l.size(); i++) {
         img[i] = l[i].size();
     }
     return img;
@@ -263,10 +263,10 @@ image image_integral(raw_stream &raw) {
 image_sequence image_sequence_representation(raw_stream &raw) {
     image_sequence seq;
     uint32_t chid = 0;
-    for(uint32_t i=0; i<raw.size(); i++) {
-        if(raw[i] == NEXT_PIXEL_MARKER) {
+    for (uint32_t i = 0; i < raw.size(); i++) {
+        if (raw[i] == NEXT_PIXEL_MARKER) {
             chid++;
-        }else{
+        } else {
             uint8_t idx =
                 raw[i] - NUMBER_OF_TIME_SLICES_OFFSET_AFTER_BEGIN_OF_ROI;
             seq[idx][chid]++;
@@ -290,8 +290,8 @@ struct PhotonStream {
 
     bool is_single_pulse_extractor_saturated() {
         image img = image_integral(raw);
-        for(uint32_t chid=0; chid<img.size(); chid++) {
-            if(img.at(chid) > NUMBER_OF_PHOTONS_IN_PIXEL_BEFORE_SATURATION)
+        for (uint32_t chid = 0; chid < img.size(); chid++) {
+            if (img.at(chid) > NUMBER_OF_PHOTONS_IN_PIXEL_BEFORE_SATURATION)
                 return true;
         }
         return false;
