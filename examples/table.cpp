@@ -7,10 +7,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <array>
-#include "../photon_stream.h"
-#include "docopt/docopt.h"
 #include <fstream>
 #include <iostream>
+#include "../photon_stream.h"
+#include "docopt/docopt.h"
 
 namespace ps = photon_stream;
 
