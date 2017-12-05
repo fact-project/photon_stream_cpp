@@ -108,11 +108,9 @@ struct Descriptor {
     uint8_t event_type;
 
     bool is_valid() {
-        return (
-            magic_1 == MAGIC_DESCRIPTOR_1 &&
-            magic_2 == MAGIC_DESCRIPTOR_2 &&
-            magic_3 == MAGIC_DESCRIPTOR_3
-        );
+        return (magic_1 == MAGIC_DESCRIPTOR_1 &&
+                magic_2 == MAGIC_DESCRIPTOR_2 &&
+                magic_3 == MAGIC_DESCRIPTOR_3);
     }
 };
 
@@ -312,16 +310,14 @@ PhotonStream read_PhotonStream_from_file(std::istream &fin) {
     phs.raw.resize(number_of_pixels_plus_number_of_photons);
     fin.read(
         reinterpret_cast<char*>(&phs.raw[0]),
-        number_of_pixels_plus_number_of_photons
-    );
+        number_of_pixels_plus_number_of_photons);
 
     uint16_t number_of_saturated_pixels = read_uint16(fin);
 
     phs.saturated_pixels.resize(number_of_saturated_pixels);
     fin.read(
         reinterpret_cast<char*>(&phs.saturated_pixels[0]),
-        sizeof(uint16_t)*number_of_saturated_pixels
-    );
+        sizeof(uint16_t)*number_of_saturated_pixels);
     return phs;
 }
 
@@ -330,15 +326,13 @@ void append_PhotonStream_to_file(const PhotonStream &phs, std::ostream &fout) {
     append_uint32(number_of_pixels_plus_number_of_photons, fout);
     fout.write(
         reinterpret_cast<char*>(phs.raw.data()),
-        number_of_pixels_plus_number_of_photons
-    );
+        number_of_pixels_plus_number_of_photons);
 
     uint16_t number_of_saturated_pixels = phs.saturated_pixels.size();
     append_uint16(number_of_saturated_pixels, fout);
     fout.write(
         reinterpret_cast<char*>(phs.saturated_pixels.data()),
-        number_of_saturated_pixels
-    );
+        number_of_saturated_pixels);
 }
 
 
