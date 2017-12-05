@@ -1,5 +1,5 @@
 // compile using:
-// g++ docopt/docopt.cpp example_table.cpp -o phs.table -std=gnu++11
+// g++ docopt/docopt.cpp table.cpp -o phs.table -std=gnu++11
 
 #include <stdio.h>
 #include <string.h>
