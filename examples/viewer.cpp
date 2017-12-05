@@ -1,5 +1,5 @@
 // compile using:
-// g++ docopt/docopt.cpp example_viewer.cpp -o phs.viewer -std=gnu++11
+// g++ docopt/docopt.cpp viewer.cpp -o phs.viewer -std=gnu++11
 
 #include <stdio.h>
 #include <string.h>
