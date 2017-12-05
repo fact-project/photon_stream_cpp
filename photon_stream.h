@@ -225,14 +225,10 @@ void append_Pointing_to_file(const Pointing &p, std::ostream &fout) {
 }
 
 //------------------------------------------------------------------------------
-#define raw_stream std::vector<uint8_t>
-#define image std::array<uint64_t, NUMBER_OF_PIXELS>
-#define image_sequence std::array<image, NUMBER_OF_TIME_SLICES>
-#define list_of_lists std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS>
-
-
-list_of_lists list_of_lists_representation(const raw_stream &raw) {
-    list_of_lists lol;
+std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS> list_of_lists_representation(
+    const std::vector<uint8_t> &raw
+) {
+    std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS> lol;
     uint32_t chid = 0;
     for (uint32_t i = 0; i < raw.size(); i++) {
         if (raw[i] == NEXT_PIXEL_MARKER) {
@@ -245,8 +241,10 @@ list_of_lists list_of_lists_representation(const raw_stream &raw) {
 }
 
 
-image list_of_lists_integral(const list_of_lists &l) {
-    image img;
+std::array<uint64_t, NUMBER_OF_PIXELS> list_of_lists_integral(
+    const std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS> &l
+) {
+    std::array<uint64_t, NUMBER_OF_PIXELS> img;
     for (uint32_t i = 0; i < l.size(); i++) {
         img[i] = l[i].size();
     }
@@ -254,14 +252,21 @@ image list_of_lists_integral(const list_of_lists &l) {
 }
 
 
-image image_integral(const raw_stream &raw) {
-    list_of_lists lol = list_of_lists_representation(raw);
+std::array<uint64_t, NUMBER_OF_PIXELS> image_integral(
+    const std::vector<uint8_t> &raw
+) {
+    std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS> lol =
+        list_of_lists_representation(raw);
     return list_of_lists_integral(lol);
 }
 
 
-image_sequence image_sequence_representation(const raw_stream &raw) {
-    image_sequence seq;
+std::array<std::array<uint64_t, NUMBER_OF_PIXELS>, NUMBER_OF_TIME_SLICES>
+image_sequence_representation(
+    const std::vector<uint8_t> &raw
+) {
+    std::array<std::array<uint64_t, NUMBER_OF_PIXELS>, NUMBER_OF_TIME_SLICES>
+    seq;
     uint32_t chid = 0;
     for (uint32_t i = 0; i < raw.size(); i++) {
         if (raw[i] == NEXT_PIXEL_MARKER) {
@@ -277,7 +282,7 @@ image_sequence image_sequence_representation(const raw_stream &raw) {
 
 
 struct PhotonStream {
-    raw_stream raw;
+    std::vector<uint8_t> raw;
     std::vector<uint16_t> saturated_pixels;
 
     uint32_t number_of_photons()const {
@@ -289,7 +294,7 @@ struct PhotonStream {
     }
 
     bool is_single_pulse_extractor_saturated()const {
-        image img = image_integral(raw);
+        std::array<uint64_t, NUMBER_OF_PIXELS> img = image_integral(raw);
         for (uint32_t chid = 0; chid < img.size(); chid++) {
             if (img.at(chid) > NUMBER_OF_PHOTONS_IN_PIXEL_BEFORE_SATURATION)
                 return true;
