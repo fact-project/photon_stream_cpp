@@ -62,7 +62,7 @@ const uint8_t MAGIC_DESCRIPTOR_3 = 's';
 //
 // see also: https://github.com/fact-project/fact-tools/blob/master/src/main/java/fact/photonstream/SinglePulseExtraction.java
 
-void append_float32(float &v, std::ostream &fout) {
+void append_float32(const float &v, std::ostream &fout) {
     fout.write(reinterpret_cast<char*>(&v), sizeof(v));
 }
 
@@ -72,7 +72,7 @@ float read_float32(std::istream &fin) {
     return v;
 }
 
-void append_uint32(uint32_t &v, std::ostream &fout) {
+void append_uint32(const uint32_t &v, std::ostream &fout) {
     fout.write(reinterpret_cast<char*>(&v), sizeof(v));
 }
 uint32_t read_uint32(std::istream &fin) {
@@ -81,7 +81,7 @@ uint32_t read_uint32(std::istream &fin) {
     return v;
 }
 
-void append_uint16(uint16_t &v, std::ostream &fout) {
+void append_uint16(const uint16_t &v, std::ostream &fout) {
     fout.write(reinterpret_cast<char*>(&v), sizeof(v));
 }
 uint16_t read_uint16(std::istream &fin) {
@@ -90,7 +90,7 @@ uint16_t read_uint16(std::istream &fin) {
     return v;
 }
 
-void append_uint8(uint8_t &v, std::ostream &fout) {
+void append_uint8(const uint8_t &v, std::ostream &fout) {
     fout.write(reinterpret_cast<char*>(&v), sizeof(v));
 }
 uint8_t read_uint8(std::istream &fin) {
