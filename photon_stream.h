@@ -231,7 +231,7 @@ void append_Pointing_to_file(const Pointing &p, std::ostream &fout) {
 #define list_of_lists std::array<std::vector<uint8_t>, NUMBER_OF_PIXELS>
 
 
-list_of_lists list_of_lists_representation(raw_stream &raw) {
+list_of_lists list_of_lists_representation(const raw_stream &raw) {
     list_of_lists lol;
     uint32_t chid = 0;
     for (uint32_t i = 0; i < raw.size(); i++) {
@@ -254,13 +254,13 @@ image list_of_lists_integral(const list_of_lists &l) {
 }
 
 
-image image_integral(raw_stream &raw) {
+image image_integral(const raw_stream &raw) {
     list_of_lists lol = list_of_lists_representation(raw);
     return list_of_lists_integral(lol);
 }
 
 
-image_sequence image_sequence_representation(raw_stream &raw) {
+image_sequence image_sequence_representation(const raw_stream &raw) {
     image_sequence seq;
     uint32_t chid = 0;
     for (uint32_t i = 0; i < raw.size(); i++) {
@@ -280,15 +280,15 @@ struct PhotonStream {
     raw_stream raw;
     std::vector<uint16_t> saturated_pixels;
 
-    uint32_t number_of_photons() {
+    uint32_t number_of_photons()const {
         return raw.size() - NUMBER_OF_PIXELS;
     }
 
-    bool is_adc_saturaded() {
+    bool is_adc_saturaded()const {
         return saturated_pixels.size() > 0;
     }
 
-    bool is_single_pulse_extractor_saturated() {
+    bool is_single_pulse_extractor_saturated()const {
         image img = image_integral(raw);
         for (uint32_t chid = 0; chid < img.size(); chid++) {
             if (img.at(chid) > NUMBER_OF_PHOTONS_IN_PIXEL_BEFORE_SATURATION)
@@ -297,7 +297,7 @@ struct PhotonStream {
         return false;
     }
 
-    bool is_saturated() {
+    bool is_saturated()const {
         return is_adc_saturaded() || is_single_pulse_extractor_saturated();
     }
 };
