@@ -356,7 +356,7 @@ ObservationEvent read_ObservationEvent_from_file(std::istream &fin) {
     evt.pointing = read_Pointing_from_file(fin);
     evt.photon_stream = read_PhotonStream_from_file(fin);
     return evt;
-};
+}
 
 void append_ObservationEvent_to_file(
     const ObservationEvent evt,
@@ -387,7 +387,7 @@ SimulationEvent read_SimulationEvent_from_file(std::istream &fin) {
     evt.pointing = read_Pointing_from_file(fin);
     evt.photon_stream = read_PhotonStream_from_file(fin);
     return evt;
-};
+}
 
 void append_SimulationEvent_to_file(
     const SimulationEvent evt,
