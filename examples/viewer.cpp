@@ -1,14 +1,17 @@
+// FACT--Photon-Stream
+// Copyright (C), (2017, ), Sebastian Achim Mueller for the FACT Collaboration
+//
 // compile using:
 // g++ docopt/docopt.cpp viewer.cpp -o phs.viewer -std=gnu++11
 
 #include <stdio.h>
 #include <string.h>
 #include <array>
-#include "../photon_stream.h"
-#include "docopt/docopt.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "../photon_stream.h"
+#include "docopt/docopt.h"
 
 namespace ps = photon_stream;
 
