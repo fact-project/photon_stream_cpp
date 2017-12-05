@@ -16,7 +16,7 @@ namespace ps = photon_stream;
 
 static const char USAGE[] =
 R"(Show FACT photon-stream event overview in a table on stdout. Reads in phs
-files from stdin. 
+files from stdin.
 
     Usage:
       phs.table [--trigger=INT]
@@ -27,12 +27,12 @@ files from stdin.
       -t --trigger=INT    Only show certain trigger type.
       -h --help           Show this screen.
       --version           Show version.
-      
+
 )";
 
 void print_event_info_line(ps::ObservationEvent &event) {
     printf(
-        "%05d %03d %5d %6d  %3.2f  %3.2f  %10.6f  %6d\n",  
+        "%05d %03d %5d %6d  %3.2f  %3.2f  %10.6f  %6d\n",
         event.id.night,
         event.id.run,
         event.id.event,
@@ -55,7 +55,6 @@ int main(int argc, char* argv[]) {
 
     printf("night    run event trigger  Az[deg] ZD[deg]  UnixTime[s]   photons\n");
     printf("------------------------------------------------------------------\n");
-    
 
     while(true) {
         ps::ObservationEvent event = ps::read_ObservationEvent_from_file(std::cin);
@@ -65,13 +64,13 @@ int main(int argc, char* argv[]) {
 
         if(args.find("--trigger")->second) {
             if(
-                std::stoi(args.find("--trigger")->second.asString()) == 
+                std::stoi(args.find("--trigger")->second.asString()) ==
                 event.info.trigger_type
             ) {
                 print_event_info_line(event);
             }
         }else{
-            print_event_info_line(event);     
+            print_event_info_line(event);
         }
     }
     return 0;
