@@ -30,7 +30,7 @@ files from stdin.
 
 )";
 
-void print_event_info_line(ps::ObservationEvent &event) {
+void print_event_info_line(const ps::ObservationEvent &event) {
     printf(
         "%05d %03d %5d %6d  %3.2f  %3.2f  %10.6f  %6d\n",
         event.id.night,
@@ -39,39 +39,42 @@ void print_event_info_line(ps::ObservationEvent &event) {
         event.info.trigger_type,
         event.pointing.az,
         event.pointing.zd,
-        float(event.info.unix_time_s) + 1e-6*float(event.info.unix_time_us),
-        event.photon_stream.number_of_photons()
-    );
-};
+        static_cast<float>(event.info.unix_time_s) +
+        1e-6*static_cast<float>(event.info.unix_time_us),
+        event.photon_stream.number_of_photons());
+}
 
 int main(int argc, char* argv[]) {
-
     std::map<std::string, docopt::value> args = docopt::docopt(
         USAGE,
         { argv + 1, argv + argc },
         true,        // show help if requested
-        "mct 0.0"
-    );  // version string
+        "mct 0.0");  // version string
 
-    printf("night    run event trigger  Az[deg] ZD[deg]  UnixTime[s]   photons\n");
-    printf("------------------------------------------------------------------\n");
+    printf(
+        "night    run event trigger  Az[deg] ZD[deg]  UnixTime[s]   "
+        "photons\n");
+    printf(
+        "-----------------------------------------------------------"
+        "-------\n");
 
-    while(true) {
-        ps::ObservationEvent event = ps::read_ObservationEvent_from_file(std::cin);
+    while (true) {
+        ps::ObservationEvent event = ps::read_ObservationEvent_from_file(
+            std::cin);
 
-        if(!event.descriptor.is_valid())
+        if (!event.descriptor.is_valid())
             break;
 
-        if(args.find("--trigger")->second) {
-            if(
+        if (args.find("--trigger")->second) {
+            if (
                 std::stoi(args.find("--trigger")->second.asString()) ==
                 event.info.trigger_type
             ) {
                 print_event_info_line(event);
             }
-        }else{
+        } else {
             print_event_info_line(event);
         }
     }
     return 0;
-};
+}
