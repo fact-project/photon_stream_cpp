@@ -370,6 +370,7 @@ void append_ObservationEvent_to_file(
     append_Descriptor_to_file(evt.descriptor, fout);
     append_ObservationIdentifier_to_file(evt.id, fout);
     append_ObservationInformation_to_file(evt.info, fout);
+    append_Pointing_to_file(evt.pointing, fout);
     append_PhotonStream_to_file(evt.photon_stream, fout);
 }
 
@@ -400,6 +401,7 @@ void append_SimulationEvent_to_file(
 ) {
     append_Descriptor_to_file(evt.descriptor, fout);
     append_SimulationIdentifier_to_file(evt.id, fout);
+    append_Pointing_to_file(evt.pointing, fout);
     append_PhotonStream_to_file(evt.photon_stream, fout);
 }
 
