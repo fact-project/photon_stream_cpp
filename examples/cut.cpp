@@ -46,7 +46,7 @@ void print_event_info_line(ps::ObservationEvent &event) {
         event.info.trigger_type,
         event.pointing.az,
         event.pointing.zd,
-        float(event.info.unix_time_s) + 1e-6*float(event.info.unix_time_us),
+        double(event.info.unix_time_s) + 1e-6*double(event.info.unix_time_us),
         event.photon_stream.number_of_photons()
     );
 };

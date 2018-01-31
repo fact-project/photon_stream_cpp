@@ -222,8 +222,8 @@ void print_event_info_line(const ps::ObservationEvent &event) {
         event.info.trigger_type,
         event.pointing.az,
         event.pointing.zd,
-        static_cast<float>(event.info.unix_time_s) +
-        1e-6*static_cast<float>(event.info.unix_time_us),
+        static_cast<double>(event.info.unix_time_s) +
+        1e-6*static_cast<double>(event.info.unix_time_us),
         event.photon_stream.number_of_photons(),
         event.photon_stream.is_saturated() ? "true" : "false");
 }
