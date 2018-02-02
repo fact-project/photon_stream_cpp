@@ -362,7 +362,7 @@ void append_PhotonStream_to_file(const PhotonStream &phs, std::ostream &fout) {
     append_uint16(number_of_saturated_pixels, fout);
     fout.write(
         reinterpret_cast<const char*>(phs.saturated_pixels.data()),
-        number_of_saturated_pixels);
+        sizeof(uint16_t)*number_of_saturated_pixels);
 }
 
 
