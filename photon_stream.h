@@ -286,6 +286,26 @@ image_sequence_representation(
 }
 
 
+std::vector<uint8_t> in_mask(
+    const std::vector<uint8_t> &raw,
+    const std::vector<bool> &mask
+) {
+    std::vector<uint8_t> out;
+    uint64_t ph = 0;
+    for (uint64_t i = 0; i < raw.size(); i++) {
+        if (raw[i] == NEXT_PIXEL_MARKER) {
+            out.push_back(NEXT_PIXEL_MARKER);
+            continue;
+        }
+        if (mask[ph]) {
+            out.push_back(raw[i]);
+        }
+        ph++;
+    }
+    return out;
+}
+
+
 struct PhotonStream {
     std::vector<uint8_t> raw;
     std::vector<uint16_t> saturated_pixels;
