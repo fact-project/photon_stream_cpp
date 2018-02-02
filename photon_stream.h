@@ -267,6 +267,11 @@ image_sequence_representation(
 ) {
     std::array<std::array<uint64_t, NUMBER_OF_PIXELS>, NUMBER_OF_TIME_SLICES>
     seq;
+    for (uint32_t t = 0u; t < NUMBER_OF_TIME_SLICES; t++)
+        for (uint32_t c = 0u; c < NUMBER_OF_PIXELS; c++)
+            seq[t][c] = 0u;
+
+
     uint32_t chid = 0;
     for (uint32_t i = 0; i < raw.size(); i++) {
         if (raw[i] == NEXT_PIXEL_MARKER) {
